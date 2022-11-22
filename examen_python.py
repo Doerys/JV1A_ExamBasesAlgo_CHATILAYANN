@@ -71,6 +71,8 @@ print(myTable)
 vide = " "
 symboleJoueurX = "X"
 symboleJoueurO = "O"
+tourJoueurX = True
+victory = False
 
 A1 = vide
 A2 = vide
@@ -93,9 +95,7 @@ print("  - - - - -")
 print("C", C1, "|", C2, "|", C3)
 print(" ")
 
-while(True):
-    tourJoueurX = True
-    
+while(victory == False):
     if(tourJoueurX == True):
         symbole = symboleJoueurX
         joueur = "Joueur 1"
@@ -107,23 +107,26 @@ while(True):
     print("C'est au tour du", joueur, "de jouer. Où souhaitez-vous placer votre symbole ? Rentrez le nom de ligne, puis de la colonne, comme ceci : A1, B2, C3, etc...")
     touche = input()
 
-    if(touche == 'A1'):
+    if(touche == 'A1') and (A1 == vide):
         A1 = symbole
-    elif(touche == 'B1'):
+    else:
+        print("Cet emplacement est déjà rempli. Choisissez un autre")
+        touche = input()
+    if(touche == 'B1') and (A1 == vide):
         B1 = symbole
-    elif(touche == 'C1'):
+    if(touche == 'C1'):
         C1 = symbole
-    elif(touche == 'A2'):
+    if(touche == 'A2'):
         A2 = symbole
-    elif(touche == 'B2'):
+    if(touche == 'B2'):
         B2 = symbole
-    elif(touche == 'C2'):
+    if(touche == 'C2'):
         C2 = symbole
-    elif(touche == 'A3'):
+    if(touche == 'A3'):
         A3 = symbole
-    elif(touche == 'B3'):
+    if(touche == 'B3'):
         B3 = symbole
-    elif(touche == 'C3'):
+    if(touche == 'C3'):
         C3 = symbole
     
     while((touche != 'A1') and (touche != 'B1') and (touche != 'C1') and (touche != 'A2') and (touche != 'B2') and (touche != 'C2') and (touche != 'A3') and (touche != 'B3') and (touche != 'C3')):
@@ -148,28 +151,70 @@ while(True):
 
     if((A1 == A2) and (A1 == A3)) and (A1 != vide):
         print("Le Joueur jouant le symbole", A1, "a gagné !")
+        victory == True
 
     if((B1 == B2) and (B1 == B3)) and (B1 != vide):
         print("Le Joueur jouant le symbole", B1, "a gagné !")
+        victory == True
 
     if((C1 == C2) and (C1 == C3)) and (C1 != vide):
         print("Le Joueur jouant le symbole", C1, "a gagné !")
+        victory == True
 
     #Victoires par Colonnes
 
     if((A1 == B1) and (A1 == C1)) and (A1 != vide):
         print("Le Joueur jouant le symbole", A1, "a gagné !")
+        victory == True
 
     if((A2 == B2) and (A2 == C2)) and (A2 != vide):
         print("Le Joueur jouant le symbole", A2, "a gagné !")
+        victory == True
 
     if((A3 == B3) and (A3 == C3)) and (A3 != vide):
         print("Le Joueur jouant le symbole", A3, "a gagné !")
+        victory == True
 
     #Victoires par Diagonales
 
     if((A1 == B2) and (A1 == C3)) and (A1 != vide):
         print("Le Joueur jouant le symbole", A1, "a gagné !")
+        victory == True
 
     if((A3 == B2) and (A3 == C1)) and (A3 != vide):
         print("Le Joueur jouant le symbole", A3, "a gagné !")
+        victory == True
+
+    if((A1 != vide) and (A2 != vide) and (A3 != vide) and (B1 != vide) and (B2 != vide) and (B3 != vide) and (C1 != vide) and (C2 != vide) and (C3 != vide)):
+        print("La grille est désormais complète.")
+        print("Voulez-vous réinitialiser ? A - Oui. B - Non")
+        touche = input()
+        if(touche == "A"):
+            A1 = vide
+            A2 = vide
+            A3 = vide
+
+            B1 = vide
+            B2 = vide
+            B3 = vide
+
+            C1 = vide
+            C2 = vide
+            C3 = vide
+
+            tourJoueurX = True
+        
+        if(touche == "B"):
+            print("Merci d'avoir joué !")
+
+
+
+#Exercice 6
+
+#Si on souhaite programmer un jeu de Puissance 4, on aura tout d'abord besoin d'ajouter des colonnes et des lignes. 
+# 
+# Il faudra également faire en sorte de respecter le principe du jeu disant qu'un pion posé dans une colonne se place à l'emplacement vide le plus bas, contrairement au morpion, où on peut placer notre symbole n'importe où -
+# - sur la colonne. En programmation, on pourrait programmer ça via une condition : si l'emplacement du dessous est vide, alors le jeton est déplacé à l'emplacement du dessous, et on fait itérer cette condition ainsi de suite, -
+# - jusqu'à ce que l'emplacement ne soit plus vide. 
+
+# Evidemment, la condition de victoire devra détecter non pas 3 jetons identiques, mais 4, d'où le nom "Puissance 4". 
