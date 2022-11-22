@@ -1,5 +1,3 @@
-import random
-
 """"
 
 #Partie 1 - Tri à bulles
@@ -96,6 +94,8 @@ print("C", C1, "|", C2, "|", C3)
 print(" ")
 
 while(victory == False):
+    symboleMis = False
+
     if(tourJoueurX == True):
         symbole = symboleJoueurX
         joueur = "Joueur 1"
@@ -105,107 +105,155 @@ while(victory == False):
         joueur = "Joueur 2"
 
     print("C'est au tour du", joueur, "de jouer. Où souhaitez-vous placer votre symbole ? Rentrez le nom de ligne, puis de la colonne, comme ceci : A1, B2, C3, etc...")
-    touche = input()
 
-    if(touche == 'A1') and (A1 == vide):
-        A1 = symbole
-    else:
-        print("Cet emplacement est déjà rempli. Choisissez un autre")
-        touche = input()
-    if(touche == 'B1') and (A1 == vide):
-        B1 = symbole
-    if(touche == 'C1'):
-        C1 = symbole
-    if(touche == 'A2'):
-        A2 = symbole
-    if(touche == 'B2'):
-        B2 = symbole
-    if(touche == 'C2'):
-        C2 = symbole
-    if(touche == 'A3'):
-        A3 = symbole
-    if(touche == 'B3'):
-        B3 = symbole
-    if(touche == 'C3'):
-        C3 = symbole
-    
-    while((touche != 'A1') and (touche != 'B1') and (touche != 'C1') and (touche != 'A2') and (touche != 'B2') and (touche != 'C2') and (touche != 'A3') and (touche != 'B3') and (touche != 'C3')):
-        print("Merci d'appuyer sur une touche correcte.")
-        touche = input()
-
-    print(" ")
-    print(" ", "1", " ", "2", " ", "3")
-    print("A", A1, "|", A2, "|", A3)
-    print("  - - - - -")
-    print("B", B1, "|", B2, "|", B3)
-    print("  - - - - -")
-    print("C", C1, "|", C2, "|", C3)
-    print(" ")
-
-    if(tourJoueurX == True):
-        tourJoueurX = False
-    else:
-        tourJoueurX = True
-
-    #Victoires par Lignes
-
-    if((A1 == A2) and (A1 == A3)) and (A1 != vide):
-        print("Le Joueur jouant le symbole", A1, "a gagné !")
-        victory == True
-
-    if((B1 == B2) and (B1 == B3)) and (B1 != vide):
-        print("Le Joueur jouant le symbole", B1, "a gagné !")
-        victory == True
-
-    if((C1 == C2) and (C1 == C3)) and (C1 != vide):
-        print("Le Joueur jouant le symbole", C1, "a gagné !")
-        victory == True
-
-    #Victoires par Colonnes
-
-    if((A1 == B1) and (A1 == C1)) and (A1 != vide):
-        print("Le Joueur jouant le symbole", A1, "a gagné !")
-        victory == True
-
-    if((A2 == B2) and (A2 == C2)) and (A2 != vide):
-        print("Le Joueur jouant le symbole", A2, "a gagné !")
-        victory == True
-
-    if((A3 == B3) and (A3 == C3)) and (A3 != vide):
-        print("Le Joueur jouant le symbole", A3, "a gagné !")
-        victory == True
-
-    #Victoires par Diagonales
-
-    if((A1 == B2) and (A1 == C3)) and (A1 != vide):
-        print("Le Joueur jouant le symbole", A1, "a gagné !")
-        victory == True
-
-    if((A3 == B2) and (A3 == C1)) and (A3 != vide):
-        print("Le Joueur jouant le symbole", A3, "a gagné !")
-        victory == True
-
-    if((A1 != vide) and (A2 != vide) and (A3 != vide) and (B1 != vide) and (B2 != vide) and (B3 != vide) and (C1 != vide) and (C2 != vide) and (C3 != vide)):
-        print("La grille est désormais complète.")
-        print("Voulez-vous réinitialiser ? A - Oui. B - Non")
-        touche = input()
-        if(touche == "A"):
-            A1 = vide
-            A2 = vide
-            A3 = vide
-
-            B1 = vide
-            B2 = vide
-            B3 = vide
-
-            C1 = vide
-            C2 = vide
-            C3 = vide
-
-            tourJoueurX = True
+    while(symboleMis == False):
         
-        if(touche == "B"):
-            print("Merci d'avoir joué !")
+        touche = input()
+
+        if(touche == 'A1') and (A1 == vide):
+            A1 = symbole
+            symboleMis = True
+        elif(touche == 'A1') and (A1 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+
+        if(touche == 'B1') and (B1 == vide):
+            B1 = symbole
+            symboleMis = True
+        elif(touche == 'B1') and (B1 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+            
+        if(touche == 'C1') and (C1 == vide):
+            C1 = symbole
+            symboleMis = True
+        elif(touche == 'C1') and (C1 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+
+        if(touche == 'A2') and (A2 == vide):
+            A2 = symbole
+            symboleMis = True
+        elif(touche == 'A2') and (A2 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+
+        if(touche == 'B2') and (B2 == vide):
+            B2 = symbole
+            symboleMis = True
+        elif(touche == 'B2') and (B2 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+
+        if(touche == 'C2') and (C2 == vide):
+            C2 = symbole
+            symboleMis = True
+        elif(touche == 'C2') and (C2 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+
+        if(touche == 'A3') and (A3 == vide):
+            A3 = symbole
+            symboleMis = True
+        elif(touche == 'A3') and (A3 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+        
+        if(touche == 'B3') and (B3 == vide):
+            B3 = symbole
+            symboleMis = True
+        elif(touche == 'B3') and (B3 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+            
+        if(touche == 'C3') and (C3 == vide):
+            C3 = symbole
+            symboleMis = True
+        elif(touche == 'C3') and (C3 != vide):
+            print("Cet emplacement est déjà rempli. Choisissez un autre")
+            touche = input()
+        
+        while((touche != 'A1') and (touche != 'B1') and (touche != 'C1') and (touche != 'A2') and (touche != 'B2') and (touche != 'C2') and (touche != 'A3') and (touche != 'B3') and (touche != 'C3')):
+            print("Merci d'appuyer sur une touche correcte.")
+            touche = input()
+
+    while(symboleMis == True):
+        print(" ")
+        print(" ", "1", " ", "2", " ", "3")
+        print("A", A1, "|", A2, "|", A3)
+        print("  - - - - -")
+        print("B", B1, "|", B2, "|", B3)
+        print("  - - - - -")
+        print("C", C1, "|", C2, "|", C3)
+        print(" ")
+
+        symboleMis = False
+
+        if(tourJoueurX == True):
+            tourJoueurX = False
+        else:
+            tourJoueurX = True
+
+        #Victoires par Lignes
+
+        if((A1 == A2) and (A1 == A3)) and (A1 != vide):
+            print("Le Joueur jouant le symbole", A1, "a gagné !")
+            victory == True
+
+        if((B1 == B2) and (B1 == B3)) and (B1 != vide):
+            print("Le Joueur jouant le symbole", B1, "a gagné !")
+            victory == True
+
+        if((C1 == C2) and (C1 == C3)) and (C1 != vide):
+            print("Le Joueur jouant le symbole", C1, "a gagné !")
+            victory == True
+
+        #Victoires par Colonnes
+
+        if((A1 == B1) and (A1 == C1)) and (A1 != vide):
+            print("Le Joueur jouant le symbole", A1, "a gagné !")
+            victory == True
+
+        if((A2 == B2) and (A2 == C2)) and (A2 != vide):
+            print("Le Joueur jouant le symbole", A2, "a gagné !")
+            victory == True
+
+        if((A3 == B3) and (A3 == C3)) and (A3 != vide):
+            print("Le Joueur jouant le symbole", A3, "a gagné !")
+            victory == True
+
+        #Victoires par Diagonales
+
+        if((A1 == B2) and (A1 == C3)) and (A1 != vide):
+            print("Le Joueur jouant le symbole", A1, "a gagné !")
+            victory == True
+
+        if((A3 == B2) and (A3 == C1)) and (A3 != vide):
+            print("Le Joueur jouant le symbole", A3, "a gagné !")
+            victory == True
+
+        if((A1 != vide) and (A2 != vide) and (A3 != vide) and (B1 != vide) and (B2 != vide) and (B3 != vide) and (C1 != vide) and (C2 != vide) and (C3 != vide)):
+            print("La grille est désormais complète.")
+            print("Voulez-vous réinitialiser ? A - Oui. B - Non")
+            touche = input()
+            if(touche == "A"):
+                A1 = vide
+                A2 = vide
+                A3 = vide
+
+                B1 = vide
+                B2 = vide
+                B3 = vide
+
+                C1 = vide
+                C2 = vide
+                C3 = vide
+
+                tourJoueurX = True
+            
+            if(touche == "B"):
+                print("Merci d'avoir joué !")
+        
 
 
 
